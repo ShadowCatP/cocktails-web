@@ -3,7 +3,7 @@ import { CocktailPagination } from "@/components/ui/CocktailPagination";
 
 export default function Home() {
   return (
-    <main className="px-16 py-8">
+    <main className="flex flex-col gap-5 px-16 py-8">
       <CocktailGrid />
       <CocktailPagination />
     </main>
