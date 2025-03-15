@@ -3,6 +3,7 @@ import { faHeart as heartFull } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartEmpty } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useFavoriteCocktailsActions } from "@/hooks/useFavoriteCocktails";
 
 interface CocktailCardProps {
   cocktail: Cocktail;
@@ -10,12 +11,20 @@ interface CocktailCardProps {
 }
 
 export const CocktailCard = ({ cocktail, isFavorite }: CocktailCardProps) => {
+  const { toggleFavoriteCocktail } = useFavoriteCocktailsActions();
+
   return (
     <Link href={`/cocktail/${cocktail.id}`}>
       <section className="flex flex-col gap-2">
         <div className="relative">
           <img src={cocktail.imageUrl} alt={cocktail.name} />
-          <button className="absolute top-2 right-2 grid place-content-center rounded-full bg-white p-3 text-xl">
+          <button
+            className="absolute top-2 right-2 grid place-content-center rounded-full bg-white p-3 text-xl"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleFavoriteCocktail(cocktail.id);
+            }}
+          >
             {isFavorite ? (
               <FontAwesomeIcon icon={heartFull} className="text-red-500" />
             ) : (

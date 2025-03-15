@@ -1,10 +1,12 @@
 "use client";
 
+import { useFavoriteCocktails } from "@/hooks/useFavoriteCocktails";
 import { CocktailCard } from "./CocktailCard";
 import { useCocktails } from "@/hooks/useCocktails";
 
 export const CocktailGrid = () => {
   const { data, isLoading, error } = useCocktails();
+  const favoriteCocktailsIds = useFavoriteCocktails();
 
   if (isLoading) return <section>Loading...</section>;
   if (error) return <section>An error occured: {error.message}</section>;
@@ -15,7 +17,7 @@ export const CocktailGrid = () => {
         <CocktailCard
           key={cocktail.id}
           cocktail={cocktail}
-          isFavorite={false}
+          isFavorite={favoriteCocktailsIds.includes(cocktail.id)}
         />
       ))}
     </section>
