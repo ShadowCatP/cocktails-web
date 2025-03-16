@@ -1,9 +1,7 @@
 import { Cocktail } from "@/api/api.types";
-import { faHeart as heartFull } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as heartEmpty } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useFavoriteCocktailsActions } from "@/hooks/useFavoriteCocktails";
+import { FavoriteButton } from "../FavoriteButton";
+import { motion } from "framer-motion";
 
 interface CocktailCardProps {
   cocktail: Cocktail;
@@ -11,27 +9,21 @@ interface CocktailCardProps {
 }
 
 export const CocktailCard = ({ cocktail, isFavorite }: CocktailCardProps) => {
-  const { toggleFavoriteCocktail } = useFavoriteCocktailsActions();
-
   return (
     <Link href={`/cocktail/${cocktail.id}`}>
-      <section className="flex flex-col gap-2">
-        <div className="relative">
-          <img src={cocktail.imageUrl} alt={cocktail.name} />
-          <button
-            className="absolute top-2 right-2 grid place-content-center rounded-full bg-white p-3 text-xl"
-            onClick={(e) => {
-              e.preventDefault();
-              toggleFavoriteCocktail(cocktail.id);
-            }}
-          >
-            {isFavorite ? (
-              <FontAwesomeIcon icon={heartFull} className="text-red-500" />
-            ) : (
-              <FontAwesomeIcon icon={heartEmpty} />
-            )}
-          </button>
+      <section className="flex cursor-pointer flex-col gap-2">
+        <div className="relative overflow-hidden rounded-lg">
+          <motion.img
+            src={cocktail.imageUrl}
+            alt={cocktail.name}
+            className="h-auto w-full"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          />
+
+          <FavoriteButton cocktailId={cocktail.id} isFavorite={isFavorite} />
         </div>
+
         <div>
           <span className="flex items-center justify-between">
             <h3 className="text-md tracking-wider text-red-900 uppercase">

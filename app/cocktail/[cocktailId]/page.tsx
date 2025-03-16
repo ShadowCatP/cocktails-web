@@ -11,14 +11,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
 import { faList, faMartiniGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
+import { useFavoriteCocktails } from "@/hooks/useFavoriteCocktails";
+import { FavoriteButton } from "@/components/ui/FavoriteButton";
 
 export default function CocktailPage() {
   const { cocktailId } = useParams();
   const { data, isLoading } = useCocktailById(Number(cocktailId));
+  const favoriteCocktailsIds = useFavoriteCocktails();
   const router = useRouter();
 
   if (isLoading) return <main>Loading...</main>;
@@ -27,7 +29,7 @@ export default function CocktailPage() {
     notFound();
   }
 
-  const { name, category, glass, instructions, imageUrl, ingredients } =
+  const { id, name, category, glass, instructions, imageUrl, ingredients } =
     data.data;
 
   return (
@@ -49,8 +51,12 @@ export default function CocktailPage() {
       </div>
 
       <div className="flex flex-col gap-3 md:flex-row">
-        <div>
+        <div className="relative max-w-6/10">
           <img src={imageUrl} alt={name} className="rounded-2xl" />
+          <FavoriteButton
+            cocktailId={id}
+            isFavorite={favoriteCocktailsIds.includes(id)}
+          />
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-3">
