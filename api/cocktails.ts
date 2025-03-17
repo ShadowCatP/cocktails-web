@@ -4,6 +4,7 @@ import { CocktailsResponse } from "./api.types";
 export const getCocktails = async (
   page: number = 1,
   filters: Filters,
+  name?: string,
 ): Promise<CocktailsResponse> => {
   const baseUrl = "https://cocktails.solvro.pl/api/v1/cocktails";
 
@@ -14,6 +15,7 @@ export const getCocktails = async (
     filters.category.forEach((category) => params.append("category", category));
   if (filters.glass.length > 0)
     filters.glass.forEach((glass) => params.append("glass", glass));
+  if (name) params.append("name", name);
 
   const res = await fetch(`${baseUrl}?${params}`);
   if (!res.ok) {

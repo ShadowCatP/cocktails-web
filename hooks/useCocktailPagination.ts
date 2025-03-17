@@ -4,7 +4,7 @@ import { Meta } from "@/api/api.types";
 import { getCocktails } from "@/api/cocktails";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useFilters } from "./useFilters";
+import { useCocktailName, useFilters } from "./useFilters";
 import { useCallback, useEffect, useState } from "react";
 
 export const useCocktailPagination = () => {
@@ -12,10 +12,9 @@ export const useCocktailPagination = () => {
   const router = useRouter();
   const pathname = usePathname();
   const filters = useFilters();
+  const name = useCocktailName();
 
-  const [currentPage, setCurrentPage] = useState(
-    Number(searchParams.get("page")) || 1,
-  );
+  const currentPage = Number(searchParams.get("page") || 1);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -27,15 +26,15 @@ export const useCocktailPagination = () => {
     [searchParams],
   );
 
+  // Reset page number after filters change
   useEffect(() => {
-    setCurrentPage(1);
     router.push(pathname + "?" + createQueryString("page", "1"));
   }, [filters]);
 
   const { data } = useQuery<{ meta: Meta }>({
-    queryKey: ["cocktailsMeta", currentPage, filters],
+    queryKey: ["cocktailsMeta", currentPage, filters, name],
     queryFn: async () => {
-      const response = await getCocktails(currentPage, filters);
+      const response = await getCocktails(currentPage, filters, name);
       return { meta: response.meta };
     },
   });
