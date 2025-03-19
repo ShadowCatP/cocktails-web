@@ -3,15 +3,13 @@ import { useFilters, useFiltersActions } from "@/hooks/useFilters";
 import { useGlasses } from "@/hooks/useGlasses";
 
 export const GlassFilter = () => {
-  const { data, isLoading } = useGlasses();
+  const { data } = useGlasses();
   const filters = useFilters();
   const { toggleFilter } = useFiltersActions();
 
-  if (isLoading) return <main>Loading...</main>;
-
   return (
     <FilterDropdown
-      options={data!.data}
+      options={data ? data.data : []}
       selectedOptions={filters.glass}
       label="glass"
       onToggleOption={toggleFilter}

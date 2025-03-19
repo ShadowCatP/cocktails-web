@@ -1,6 +1,6 @@
 import { Cocktail } from "@/api/api.types";
 import { getCocktails } from "@/api/cocktails";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useCocktailName, useFilters } from "./useFilters";
 
@@ -10,7 +10,7 @@ export const useCocktails = () => {
   const filters = useFilters();
   const name = useCocktailName();
 
-  return useQuery<{ data: Cocktail[] }>({
+  return useSuspenseQuery<{ data: Cocktail[] }>({
     queryKey: ["cocktails", page, filters, name],
     queryFn: async () => {
       const res = await getCocktails(page, filters, name.trim());

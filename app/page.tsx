@@ -1,10 +1,12 @@
 "use client";
 
 import { CocktailGrid } from "@/components/ui/Cards/CocktailGrid";
+import { CocktailGridLoading } from "@/components/ui/Cards/CocktailGridLoading";
 import { CocktailPagination } from "@/components/ui/CocktailPagination";
 import { CategoryFilter } from "@/components/ui/Filters/CategoryFilter";
 import { GlassFilter } from "@/components/ui/Filters/GlassFilter";
 import { useFiltersActions } from "@/hooks/useFilters";
+import { Suspense } from "react";
 
 export default function Home() {
   const { clearFilters } = useFiltersActions();
@@ -21,7 +23,9 @@ export default function Home() {
       >
         Clear Filters
       </button>
-      <CocktailGrid />
+      <Suspense fallback={<CocktailGridLoading />}>
+        <CocktailGrid />
+      </Suspense>
       <CocktailPagination />
     </main>
   );
