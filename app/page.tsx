@@ -28,7 +28,9 @@ export default function Home() {
       <Suspense fallback={<CocktailGridLoading />}>
         <CocktailGrid />
       </Suspense>
-      <CocktailPagination />
+      <Suspense fallback={<></>}>
+        <CocktailPagination />
+      </Suspense>
     </main>
   );
 }
