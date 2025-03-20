@@ -32,7 +32,7 @@ export const SearchBar = () => {
         value={name}
         type="text"
         placeholder="Search for a cocktail..."
-        className="w-64 border-b-2 border-blue-900 outline-none"
+        className="w-full min-w-64 border-b-2 border-blue-900 outline-none"
       />
       <FontAwesomeIcon
         icon={faMagnifyingGlass}

@@ -2,6 +2,7 @@ import { Cocktail } from "@/api/api.types";
 import Link from "next/link";
 import { FavoriteButton } from "../FavoriteButton";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface CocktailCardProps {
   cocktail: Cocktail;
@@ -13,13 +14,18 @@ export const CocktailCard = ({ cocktail, isFavorite }: CocktailCardProps) => {
     <Link href={`/cocktail/${cocktail.id}`}>
       <section className="flex cursor-pointer flex-col gap-2">
         <div className="relative overflow-hidden rounded-lg">
-          <motion.img
-            src={cocktail.imageUrl}
-            alt={cocktail.name}
-            className="h-auto w-full"
+          <motion.div
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-          />
+          >
+            <Image
+              width={700}
+              height={700}
+              src={cocktail.imageUrl}
+              alt={cocktail.name}
+              className="h-auto w-full"
+            />
+          </motion.div>
 
           <FavoriteButton cocktailId={cocktail.id} isFavorite={isFavorite} />
         </div>

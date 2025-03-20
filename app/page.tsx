@@ -12,7 +12,7 @@ export default function Home() {
   const { clearFilters } = useFiltersActions();
 
   return (
-    <main className="flex flex-col gap-5 px-3 py-8 md:px-16">
+    <main className="flex flex-col gap-5 px-3 pt-4 pb-8 md:px-16 md:py-8">
       <div className="flex flex-col gap-3 md:flex-row">
         <CategoryFilter />
         <GlassFilter />

@@ -3,7 +3,7 @@ import { SearchBar } from "../SearchBar";
 
 export const Header = () => {
   return (
-    <header className="flex items-center justify-between p-3">
+    <header className="flex flex-col justify-between gap-6 p-3 md:flex-row md:items-center">
       <div className="flex items-center gap-3 font-semibold">
         <Image
           src={"/logo.png"}
