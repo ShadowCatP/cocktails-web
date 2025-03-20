@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cocktails.solvro.pl",
-        pathname: "/images/cocktails/**",
+        pathname: "/images/**",
       },
     ],
   },

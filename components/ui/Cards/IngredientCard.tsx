@@ -1,4 +1,5 @@
 import { Ingredient } from "@/api/api.types";
+import Image from "next/image";
 import { HTMLAttributes } from "react";
 
 interface IngredientCardProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,7 +18,9 @@ export const IngredientCard = ({
     >
       <div className="relative mr-0 flex-shrink-0">
         {ingredient.imageUrl && (
-          <img
+          <Image
+            width={700}
+            height={700}
             src={ingredient.imageUrl}
             alt={ingredient.name}
             className="h-24 w-24 rounded-full border-2 border-gray-200 object-cover p-2"
