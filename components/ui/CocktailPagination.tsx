@@ -13,7 +13,6 @@ import {
 
 export const CocktailPagination = () => {
   const { currentPage, totalPages } = useCocktailPagination();
-  console.log(`Current page: ${currentPage}`);
 
   const createPageLink = (page: number) => `/?page=${page}`;
 

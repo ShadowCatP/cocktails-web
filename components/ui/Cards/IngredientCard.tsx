@@ -12,7 +12,7 @@ export const IngredientCard = ({
 }: IngredientCardProps) => {
   return (
     <div
-      className={`flex gap-6 rounded-lg bg-gray-100 p-4 transition-transform hover:scale-105 ${className}`}
+      className={`flex gap-6 rounded-lg bg-gray-100 p-4 shadow-md transition-transform hover:scale-105 ${className}`}
       {...rest}
     >
       <div className="relative mr-0 flex-shrink-0">

@@ -19,10 +19,10 @@ export const FilterDropdown = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative w-full md:w-1/2">
+    <div className="relative w-full">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between rounded-md border border-gray-300 bg-white p-2"
+        className="flex w-full items-center justify-between rounded-md border border-gray-300 bg-white p-2 shadow-md"
       >
         <span>
           {selectedOptions.length === 0

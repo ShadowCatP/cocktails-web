@@ -2,8 +2,6 @@
 
 import { useFiltersActions } from "@/hooks/useFilters";
 import { debounce } from "@/lib/debounce";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { KeyboardEvent, useCallback, useEffect, useState } from "react";
 
 export const SearchBar = () => {
@@ -25,18 +23,14 @@ export const SearchBar = () => {
   }, [name, debouncedSetName]);
 
   return (
-    <div className="relative">
+    <div className="w-full rounded-md border border-gray-300 bg-white p-2 shadow-md">
       <input
         onKeyDown={handleKeyDown}
         onChange={(e) => setName(e.target.value)}
         value={name}
         type="text"
-        placeholder="Search for a cocktail..."
-        className="w-full min-w-64 border-b-2 border-blue-900 outline-none"
-      />
-      <FontAwesomeIcon
-        icon={faMagnifyingGlass}
-        className="absolute right-1 bottom-2"
+        placeholder="🔍 Search for a cocktail..."
+        className="w-full outline-none"
       />
     </div>
   );

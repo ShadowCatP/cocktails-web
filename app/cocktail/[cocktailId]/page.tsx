@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useFavoriteCocktails } from "@/hooks/useFavoriteCocktails";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
+import Image from "next/image";
 
 export default function CocktailPage() {
   const { cocktailId } = useParams();
@@ -33,7 +34,7 @@ export default function CocktailPage() {
     data.data;
 
   return (
-    <main className="mx-auto my-6 flex w-95/100 max-w-[1024px] flex-col gap-6 rounded-4xl bg-gray-200 p-6">
+    <main className="mx-auto my-6 flex w-95/100 max-w-[1024px] flex-col gap-6 rounded-4xl bg-gray-200 p-6 shadow-md">
       <div>
         <Breadcrumb>
           <BreadcrumbList>
@@ -51,8 +52,14 @@ export default function CocktailPage() {
       </div>
 
       <div className="flex flex-col gap-3 md:flex-row">
-        <div className="relative max-w-6/10">
-          <img src={imageUrl} alt={name} className="rounded-2xl" />
+        <div className="relative w-full max-w-[700px]">
+          <Image
+            width={700}
+            height={700}
+            src={imageUrl}
+            alt={name}
+            className="rounded-2xl"
+          />
           <FavoriteButton
             cocktailId={id}
             isFavorite={favoriteCocktailsIds.includes(id)}

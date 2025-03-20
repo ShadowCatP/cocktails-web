@@ -1,9 +1,8 @@
 import Image from "next/image";
-import { SearchBar } from "../SearchBar";
 
 export const Header = () => {
   return (
-    <header className="flex flex-col justify-between gap-6 p-3 md:flex-row md:items-center">
+    <header className="z-10 flex flex-col justify-between gap-6 bg-white p-2 shadow-md md:flex-row md:items-center md:p-5">
       <div className="flex items-center gap-3 font-semibold">
         <Image
           src={"/logo.png"}
@@ -17,7 +16,6 @@ export const Header = () => {
           <span className="rounded-md bg-blue-400 p-2 text-white">hub</span>
         </h1>
       </div>
-      <SearchBar />
     </header>
   );
 };

@@ -12,7 +12,7 @@ interface CocktailCardProps {
 export const CocktailCard = ({ cocktail, isFavorite }: CocktailCardProps) => {
   return (
     <Link href={`/cocktail/${cocktail.id}`}>
-      <section className="flex cursor-pointer flex-col gap-2">
+      <section className="flex cursor-pointer flex-col gap-2 rounded-md bg-white p-4 shadow-md">
         <div className="relative overflow-hidden rounded-lg">
           <motion.div
             whileHover={{ scale: 1.1 }}
